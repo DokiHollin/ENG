@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="utf-8">
+<title>Event Booking System</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="../../layui/css/layui.css">
+<link rel="stylesheet" href="../../xznstatic/css/common.css"/>
+<link rel="stylesheet" href="../../xznstatic/css/style.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<script type="text/javascript" src="../../xznstatic/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../../xznstatic/js/jquery.SuperSlide.2.1.1.js"></script>
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<style>
+	html::after {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		content: '';
+		display: block;
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: center;
+			}
+	#test1 {
+		overflow: hidden;
+	}
+	#test1 .layui-carousel-ind li {
+		width: 16px;
+		height: 5px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 3px;
+		background-color: rgba(208, 208, 208, 1);
+		box-shadow: 0 0 6px rgba(255,0,0,.8);
+	}
+	#test1 .layui-carousel-ind li.layui-this {
+		width: 50px;
+		height: 5px;
+		border-width: 0px;
+		border-style: solid;
+		border-color: rgba(0, 0, 0, 0.3);
+		border-radius: 0;
+		background-color: rgba(255, 255, 255, 1);
+		box-shadow: 0 0  6px rgba(255,0,0,.8);
+	}
+
+
+	.recommend {
+		padding: 10px 0;
+		display: flex;
+		justify-content: center;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+	}
+	.recommend .box {
+	    width: 1002px;
+		margin: 0 auto;
+	}
+	.recommend .box .title {
+		padding: 10px 5px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		box-sizing: border-box;
+	}
+	.recommend .box .title span {
+		padding: 0 10px;
+		font-size: 16px;
+		line-height: 1.4;
+	}
+
+	.recommend .box .filter {
+		padding: 0 10px;
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		width: 100%;
+		flex-wrap: wrap;
+	}
+	.recommend .box .filter .item-list {
+		display: flex;
+		align-items: center;
+	}
+	.recommend .box .filter .item-list .lable {
+		font-size: 14px;
+		color: #333;
+		box-sizing: border-box;
+	}
+	.recommend .box .filter .item-list input {
+		padding: 0 10px;
+		box-sizing: border-box;
+		outline: none;
+	}
+	.recommend .box .filter button {
+		display: flex;
+		padding: 0 10px;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+	}
+	.recommend .box .filter button i {
+		margin-right: 4px;
+	}
+
+	.recommend .box .list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+        	.recommend .box .list .list-item {
+		flex: 0 0 33%;
+		padding: 0 5px;
+		box-sizing: border-box;
+	}
+	.recommend .box .list .list-item .list-item-body {
+		cursor: pointer;
+		border: 1px solid rgba(0, 0, 0, 3);
+		padding: 5px;
+		box-sizing: border-box;
+	}
+	.recommend .box .list .list-item-body img {
+		width: 100%;
+		height: 100px;
+		display: block;
+		margin: 0 auto;
+	}
+
+	.recommend .box .list .list-item-body .info {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.recommend .box .list .list-item-body .info .price {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		text-align: center;
+		box-sizing: border-box;
+	}
+
+	.recommend .box .list .list-item-body .info .name {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		text-align: center;
+		box-sizing: border-box;
+	}
+
+	.recommend .box .list .list-item3 {
+		flex: 0 0 33.33%;
+	}
+
+	.recommend .box .list .list-item5 {
+		flex: 0 0 20%;
+	}
+
+	.recommend .box .news {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 0;
+width: 100%;
+	}
+
+        	.recommend .box .news .list-item {
+		flex: 0 0 50%;
+		padding: 0 10px;
+		box-sizing: border-box;
+	}
+	.recommend .box .news .list-item .list-item-body {
+		cursor: pointer;
+		border: 1px solid rgba(0, 0, 0, 3);
+		padding: 10px;
+		box-sizing: border-box;
+		display: flex;
+	}
+
+	.recommend .box .news .list-item .list-item-body img {
+		width: 120px;
+		height: 100%;
+		display: block;
+		margin: 0 auto;
+	}
+
+	.recommend .box .news .list-item .list-item-body .item-info {
+		flex: 1;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		padding-left: 10px;
+		box-sizing: border-box;
+	}
+
+	.recommend .box .news .list-item .list-item-body .item-info .name {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		box-sizing: border-box;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+
+	.recommend .box .news .list-item .list-item-body .item-info .time {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		box-sizing: border-box;
+	}
+
+	.recommend .box .news .list-item1 {
+		flex: 0 0 100%;
+	}
+
+	.recommend .box .news .list-item3 {
+		flex: 0 0 33.33%;
+	}
+
+	.index-pv1 .animation-box:hover {
+		transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1) rotate(0deg) skew(0deg, 0deg);
+		transition: all 0.3s;
+	}
+
+  .layui-laypage .layui-laypage-count {
+    padding: 0 10px;
+  }
+  .layui-laypage .layui-laypage-skip {
+    padding-left: 10px;
+  }
+	.next-button {
+		background-color: #f60606; /* Red background */
+		color: white; /* White text */
+		border: none;
+		padding: 10px 20px;
+		border-radius: 4px;
+		cursor: pointer;
+		/* Add additional styles as needed */
+	}
+
+	.frosted-glass-overlay {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%; /* Adjusted width for better mobile view */
+		text-align: center;
+		backdrop-filter: blur(1px);
+		background-color: rgba(255, 255, 255, 0.5); /* White color with opacity for frosted glass effect */
+		padding: 50px 0; /* Spacing for the text */
+	}
+
+	.frosted-glass-overlay h1 {
+		margin: 0;
+		color: whitesmoke; /* Text color */
+		font-size: 2em; /* Text size */
+	}
+	.my-skin-class .layui-layer-content {
+		word-wrap: break-word; /* Older browsers */
+		word-break: break-word; /* Breaks the words to prevent overflow */
+		white-space: pre-wrap; /* CSS3 */
+	}
+	.carousel {
+		position: relative;
+		overflow: hidden;
+		width: 100%; /* Adjust as needed */
+		height: 500px; /* Adjust as needed */
+	}
+
+	.slides {
+		width: 300%; /* 3 slides, each 100% wide */
+		height: 100%;
+		display: flex;
+		transition: transform 0.5s ease;
+	}
+
+	.slide {
+		width: 33.3333%;
+		flex-shrink: 0;
+		overflow: hidden;
+	}
+
+	.slide img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+</style><body>
+<div id="app">
+	<div class="banner">
+		<!-- The frosted glass overlay with text -->
+		<div class="layui-carousel" id="test1">
+			<div class="carousel">
+				<div class="slides">
+					<div class="slide"><img src="../../upload/picture1.jpg" alt="Slide 1"></div>
+					<div class="slide"><img src="../../upload/picture2.jpg" alt="Slide 2"></div>
+					<div class="slide"><img src="../../upload/picture3.jpg" alt="Slide 3"></div>
+				</div>
+				<div class="frosted-glass-overlay">
+					<h1>JOIN US & TO BE PART OF US</h1>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="recommend index-pv1" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0px 0 0 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(247, 242, 238, 1)","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
+
+		<div class="box" style='width:75%'>
+			<!-- Part One: User Information -->
+			<div id="calendar" class="container mt-5" v-show="currentPart === 1">
+				<form @submit.prevent="goToNextPart">
+					<div class="form-group">
+						<label for="firstName">First Name:</label>
+						<input type="text" class="form-control" id="firstName" v-model="booking.firstName" required>
+					</div>
+
+					<div class="form-group">
+						<label for="lastName">Last Name:</label>
+						<input type="text" class="form-control" id="lastName" v-model="booking.lastName" required>
+					</div>
+
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input type="email" class="form-control" id="email" v-model="booking.email" required>
+					</div>
+
+					<div class="form-group">
+						<label for="eventDate">Event Date:</label>
+						<input type="text" class="form-control" id="datepicker">
+					</div>
+
+					<button type="submit" class="btn btn-primary">Next</button>
+				</form>
+			</div>
+
+
+			<!-- Part Two: Additional Questions -->
+			<div id="additionalQuestions" v-show="currentPart === 2" class="container my-3">
+				<form @submit.prevent="submitForm" class="mb-3">
+
+					<div class="form-group">
+						<label for="country">Where did you come from?</label>
+						<select id="country" class="form-control" v-model="booking.country" @change="checkCountry" required>
+							<option value="">Select a country</option>
+							<option v-for="country in countries" :value="country.name">{{ country.name }}</option>
+						</select>
+					</div>
+
+					<div class="form-group" v-if="booking.country !== 'Australia'">
+						<label>Method of transportation:</label>
+						<select class="form-control" v-model="booking.transportation" required>
+							<!-- Provide options here -->
+							<option value="Flight">Flight</option>
+						</select>
+					</div>
+
+					<div class="form-group" v-if="booking.transportation === 'Flight'">
+						<!-- Use the computed property 'transportLabel' for dynamic label text -->
+
+						<label :for="transportLabelId">{{ transportLabel }}</label>
+						<select class="form-control" v-model="booking.airportTransportation" required>
+							<option value="Train">Train</option>
+							<option value="Bus">Bus</option>
+							<option value="Drive">Drive</option>
+						</select>
+					</div>
+
+
+					<div class="form-group">
+						<label for="accommodation">Accommodation during event?</label>
+						<select id="accommodation" class="form-control" v-model="booking.accommodation" required>
+							<option value="Hotel">Hotel</option>
+							<option value="Else">Else</option>
+						</select>
+					</div>
+
+					<div class="d-flex justify-content-between">
+						<button type="button" @click="goToPreviousPart" class="btn btn-secondary">Back</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+			</div>
+
+
+		</div>
+	</div>
+
+
+</div>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		let currentIndex = 0;
+		const slides = document.querySelector('.slides');
+		const slideCount = document.querySelectorAll('.slide').length;
+
+		function goToSlide(index) {
+			slides.style.transform = `translateX(-${index * 100 / slideCount}%)`;
+			currentIndex = index;
+		}
+
+		function nextSlide() {
+			let newIndex = (currentIndex + 1) % slideCount;
+			goToSlide(newIndex);
+		}
+
+		setInterval(nextSlide, 3000); // Change slide every 3 seconds
+	});
+
+</script>
+<style>
+	.my-skin-class .layui-layer-content {
+		word-wrap: break-word;
+		word-break: break-word;
+		white-space: pre-wrap;
+	}
+</style>
+<script src="../../layui/layui.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../modules/config.js"></script>
+<script src="../../js/utils.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"></script>
+<script type="text/javascript">
+	var vue = new Vue({
+		el: '#app',
+		data: {
+			mcdatepicker: null,
+			swiperList: [],
+			dataList: [],
+			swiperIndex: '-1',
+			currentPart: 1,
+			countries: [],
+			transportLabelId: 'airport-transport',
+			booking: {
+				firstName: '',
+				lastName: '',
+				email: '',
+				eventDate: '',
+				country: '',
+				transportation: '',
+				airportTransportation: '',
+				accommodation: ''
+			},
+
+		},
+
+		filters: {
+			newsDesc: function(val) {
+				if (val) {
+					if (val.length > 60) {
+						return val.substring(0, 60).replace(/<[^>]*>/g).replace(/undefined/g, '');
+					} else {
+						return val.replace(/<[^>]*>/g).replace(/undefined/g, '');
+					}
+				}
+				return '';
+			}
+		},
+		methods: {
+			goToNextPart() {
+				// Handle the submission and go to the next part of the form
+				this.currentPart++;
+				// You can perform form validation or submission here
+			},
+			checkCountry() {
+				if (this.booking.country !== 'Australia') {
+					this.booking.transportation = 'Flight';
+				}
+			},
+			goToPreviousPart() {
+				this.currentPart = 1;
+			},
+			fetchCountries() {
+				fetch('https://restcountries.com/v2/all')
+						.then(response => response.json())
+						.then(data => {
+							this.countries = data;
+						})
+						.catch(error => {
+							console.error('Error fetching countries:', error);
+						});
+			},
+
+			isAuth(tablename, button) {
+				return isFrontAuth(tablename, button)
+			},
+			jump(url) {
+				jump(url)
+			},
+			submitForm() {
+				let distancePromise = this.booking.country !== 'Australia'
+						? this.calculateDistance(this.booking.country, 'Australia')
+						: Promise.resolve(20);
+
+				distancePromise.then(distance => {
+					let bookingData = {
+						firstName: this.booking.firstName,
+						lastName: this.booking.lastName,
+						email: this.booking.email,
+						eventDate: this.booking.eventDate,
+						isLocal: this.booking.country === 'Australia',
+						transportation: this.booking.transportation,
+						airportTransportation: this.booking.airportTransportation,
+						distanceToAustralia: distance,
+						accommodation: this.booking.accommodation,
+					};
+
+					// Insert into table
+					fetch('/springboot3fy99/api/submitForm', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(bookingData)
+					}).then(response => {
+						if (response.ok) {
+							return response.json();
+						} else {
+							// layer.msg('Booking Error, retry later~', { icon: 2, time: 2000 }); // icon 2 is for error
+							// throw new Error('Server responded with status ' + response.status);
+							// Calculate the estimated carbon emissions
+							let carbonEmission = this.calculateCarbonEmissions(bookingData);
+							// Define the message based on accommodation
+							let message = `Booking Successful. The estimated carbon emission is: ${carbonEmission} kg`;
+							if (bookingData.accommodation === "Hotel") {
+								message += `, including additional hotel stay emissions (155.92kg).`;
+							}
+						}
+					}).then(data => {
+						// Calculate the estimated carbon emissions
+						let carbonEmission = this.calculateCarbonEmissions(bookingData);
+						// Define the message based on accommodation
+						let message = `Booking Successful. The estimated carbon emission is: ${carbonEmission} kg`;
+						if (bookingData.accommodation === "Hotel") {
+							message += `, including additional hotel stay emissions (155.92kg).`;
+						}
+						// Show success message with the estimated carbon emissions
+
+
+// Then reference that class in your JavaScript
+						layer.msg(message, {
+							icon: 1,
+							time: 4000,
+							skin: 'my-skin-class' // Reference your custom class here
+						});
+						this.resetBookingForm();
+
+					}).catch(error => {
+						layer.msg('Booking Error, retry later~', { icon: 2, time: 2000 }); // icon 2 is for error
+						console.error('Error:', error);
+					});
+				});
+			},
+			resetBookingForm() {
+				// Reset the booking data to its initial state
+				this.booking = {
+					firstName: '',
+					lastName: '',
+					email: '',
+					eventDate: '',
+					country: '',
+					transportation: '',
+					airportTransportation: '',
+					accommodation: ''
+				};
+				this.currentPart = 1;
+
+				// If you have a form element with a ref attribute, you can reset it directly.
+				// Example: <form ref="bookingForm">
+				if (this.$refs.bookingForm) {
+					this.$refs.bookingForm.reset();
+				}
+			},
+			// New method to calculate carbon emissions with accommodation consideration
+		calculateCarbonEmissions(data) {
+		let emissionsPerKm = {
+			Flight: 133,
+			Car: 137, // Assuming a medium-sized diesel car
+			Train: 41,
+			Bus: 25
+		};
+		let carbonEmission = 0;
+		if(data.isLocal) {
+			carbonEmission = 20 * emissionsPerKm[data.airportTransportation];
+		} else {
+			carbonEmission = data.distanceToAustralia * emissionsPerKm.Flight + 20 * emissionsPerKm[data.airportTransportation];
+		}
+
+		// If accommodation is "Hotel", add the additional emissions
+		if(data.accommodation === "Hotel") {
+			carbonEmission += 4 * 38.89; // Assuming 38.89kg per day for 4 days
+		}
+
+		// Convert grams to kilograms and fix to two decimal places
+		carbonEmission = (carbonEmission / 1000).toFixed(2);
+		return carbonEmission;
+	},
+
+
+	calculateDistance(countryFrom, countryTo) {
+				return new Promise((resolve, reject) => {
+					fetch('countries.csv')
+							.then(response => response.text())
+							.then(data => {
+								const rows = data.split('\n');
+								const countries = {};
+								rows.forEach(row => {
+									const [country, , , , latitude, longitude] = row.split(',');
+									countries[country.trim()] = { latitude: parseFloat(latitude), longitude: parseFloat(longitude) };
+								});
+
+								const from = countries[countryFrom];
+								const to = countries[countryTo];
+
+								function haversine(lat1, lon1, lat2, lon2) {
+									const R = 6371; // 地球平均半径，单位为公里
+									const dLat = (lat2 - lat1) * Math.PI / 180;
+									const dLon = (lon2 - lon1) * Math.PI / 180;
+									const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+											Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+											Math.sin(dLon / 2) * Math.sin(dLon / 2);
+									const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+									const distance = R * c;
+									return distance;
+								}
+
+								if (from && to) {
+									const distance = haversine(from.latitude, from.longitude, to.latitude, to.longitude);
+									console.log(`Distance between ${countryFrom} and ${countryTo}: ${distance} km`);
+									resolve(distance);
+								} else {
+									console.error('Country not found.');
+									reject(new Error('Country not found.'));
+								}
+							})
+							.catch(error => {
+								console.error('Error:', error);
+								reject(error);
+							});
+				});
+			},
+
+
+
+
+		},
+		beforeDestroy() {
+			if (this.mcdatepicker) {
+				this.mcdatepicker.destroy();
+			}
+		},
+
+		mounted() {
+			// Initialize the Pikaday datepicker
+			// new Pikaday({
+			// 	field: document.getElementById('eventDate'),
+			// 	format: 'YYYY-MM-DD' // Specify the format of the date
+			// });
+			// Initialize MCDatepicker
+			// Initialize MCDatepicker as an inline calendar
+			this.fetchCountries();
+			this.mcdatepicker = MCDatepicker.create({
+				el: '#datepicker', // Attach to the element with ID datepicker
+				bodyType: 'inline', // Set as inline to keep it always visible
+				dateFormat: 'YYYY-MM-DD',
+				selectedDate: new Date(), // Set a default selected date if needed
+				theme: {
+					theme_color: '#f60606' // Customize the color theme as needed
+				}
+			});
+
+			// Event listener for date selection
+			this.mcdatepicker.onSelect((date, formatedDate) => {
+				this.booking.eventDate = formatedDate;
+				// Do not close the datepicker after selection
+			});
+		},
+		computed: {
+			transportLabel() {
+				return this.booking.country === 'Australia' ? 'Transport to conference' : 'Transport from airport';
+			},
+			// ... other computed properties or methods
+		},
+	});
+
+	layui.use(['layer', 'element', 'carousel', 'laypage', 'http', 'jquery'], function() {
+		var layer = layui.layer;
+		var element = layui.element;
+		var carousel = layui.carousel;
+		var laypage = layui.laypage;
+		var http = layui.http;
+		var jquery = layui.jquery;
+
+		var limit = 8;
+
+		// 获取轮播图 数据
+		http.request('config/list', 'get', {
+			page: 1,
+			limit: 5
+		}, function(res) {
+			if (res.data.list.length > 0) {
+				let swiperList = [];
+				res.data.list.forEach(element => {
+					if (element.value != null) {
+						swiperList.push({
+							img: element.value
+						});
+					}
+				});
+				vue.swiperList = swiperList;
+
+				vue.$nextTick(() => {
+					carousel.render({
+						elem: '#test1',
+						width: '100%',
+						height: '500px',
+						arrow: 'always',
+						anim: 'fade',
+						autoplay: 'true',
+						interval: '3000',
+						indicator: 'inside'
+					});
+
+				})
+				// vue.$nextTick(()=>{
+				//   window.xznSlide();
+				// });
+			}
+		});
+
+
+		// 分页列表
+		pageList();
+
+		// 搜索按钮
+		jquery('#btn-search').click(function(e) {
+			pageList();
+		});
+
+		function pageList() {
+			var param = {
+				page: 1,
+				limit: limit
+			}
+
+
+			if (jquery('#mingcheng').val()) {
+				param['mingcheng'] = jquery('#mingcheng').val() ? '%' + jquery('#mingcheng').val() + '%' : '';
+			}
+
+
+
+			// 获取列表数据
+			http.request('zixishi/list', 'get', param, function(res) {
+				vue.dataList = res.data.list
+				// 分页
+				laypage.render({
+					elem: 'pager',
+					count: res.data.total,
+					limit: limit,
+					groups: 5,
+					layout: ["prev","page","next","skip","count"],
+					theme: '#000000',
+					jump: function(obj, first) {
+						param.page = obj.curr;
+						//首次不执行
+						if (!first) {
+							http.request('zixishi/list', 'get', param, function(res) {
+								vue.dataList = res.data.list
+							})
+						}
+					}
+				});
+			})
+		}
+	});
+
+
+	window.xznSlide = function() {
+		jQuery(".banner").slide({mainCell:".bd ul",autoPlay:true,interTime:5000});
+		jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_piclist ul",effect:"leftLoop", delayTime:200, autoPlay:true,triggerTime:0});
+		jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_tx ul",delayTime:0, autoPlay:true});
+		jQuery(".product_list").slide({mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:5,trigger:"click",interTime:4000});
+	};
+</script>
+
+
+
+</body>
+
+</html>
