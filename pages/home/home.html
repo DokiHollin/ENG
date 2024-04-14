@@ -64,7 +64,7 @@
 	}
 
 	.recommend .box {
-	    width: 1014px;
+	    width: 100%;
 	}
 
 	.recommend .box .title {
@@ -445,6 +445,44 @@
 		margin: 0;
 		color: whitesmoke; /* Text color */
 		font-size: 2em; /* Text size */
+	}
+	@media (max-width: 768px) {
+		.list-item {
+			flex: 0 0 50%; /* 每个list-item占据一行的一半 */
+			margin: 10px 0; /* 为list-item添加一些顶部和底部的间距 */
+			margin-left: 10px;
+			box-sizing: border-box; /* 包括padding和border在内的宽度 */
+
+		}
+
+		.list-item-body img {
+			height: auto; /* 图片高度自动调整 */
+			width: 100%;
+		}
+
+		.list-item-body .name {
+			padding: 30px; /* 对于小屏幕，减少padding的大小 */
+		}
+	}
+	@media (max-width: 768px) {
+	  .recommend .box .list .list-item {
+	    flex: 0 0 100%;
+	    max-width: 100%; /* 确保宽度不会超过屏幕宽度 */
+	    margin: 0 0 20px 0; /* 调整边距为0，添加底部间距 */
+		margin-left: 5%;
+	    padding: 0; /* 移除左右内边距 */
+	    box-sizing: border-box; /* 包含内边距和边框在内的宽度 */
+	  }
+	
+	  .recommend .box .list .list-item-body {
+	    margin: 0; /* 移除左边距 */
+	  }
+	
+	  .recommend .box .list .list-item-body img {
+	    width: 100%; /* 图片宽度100% */
+	    height: auto; /* 高度自动 */
+	    box-shadow: none; /* 移除阴影 */
+	  }
 	}
 </style>
 <body>
