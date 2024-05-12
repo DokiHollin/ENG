@@ -48,10 +48,10 @@ layui.define(['jquery', 'layer'], function(exports) { //提示：模块也可以
 				},
 				error: function(xhr, status, error) {
 					console.log(xhr, status, error)
-					layer.msg("Testing Mode", {
-						time: 2000,
-						icon: 5
-					})
+					// layer.msg("Testing Mode", {
+					// 	time: 2000,
+					// 	icon: 5
+					// })
 					layer.close(index);
 				}
 			});
@@ -91,10 +91,10 @@ layui.define(['jquery', 'layer'], function(exports) { //提示：模块也可以
 				},
 				error: function(xhr, status, error) {
 					console.log(xhr, status, error)
-					layer.msg("Testing Mode", {
-						time: 2000,
-						icon: 5
-					})
+					// layer.msg("Testing Mode", {
+					// 	time: 2000,
+					// 	icon: 5
+					// })
 					layer.close(index);
 				},
 			});
