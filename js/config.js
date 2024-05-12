@@ -50,9 +50,9 @@ var indexNav = [
 },
 
 {
-	name: 'Help',
+	name: 'Offset Program',
 	// url: './pages/zixishi/list.html'
-    url: './pages/home/home.html'
+    url: './pages/home/offset.html'
 }
 ]
 

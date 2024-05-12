@@ -564,6 +564,17 @@ width: 100%;
 							icon: 1,
 							time: 7000,
 							skin: 'my-skin-class' // Reference your custom class here
+						}, () => {
+							// After the message, show a confirm dialog
+							layer.confirm('Do you want to offset the carbon emissions for your travel?', {
+								btn: ['Yes', 'No'] // Buttons
+							}, function(){
+								// If user clicks 'Yes'
+								window.location.href = '../home/offset.html';
+							}, function(){
+								// If user clicks 'No'
+								layer.msg('Thank you for your booking!', {icon: 1, time: 3000});
+							});
 						});
 						this.resetBookingForm();
 
@@ -703,6 +714,18 @@ width: 100%;
 			},
 			// ... other computed properties or methods
 		},
+		showCarbonOffsetDialog() {
+			// 使用 layui 的 layer.confirm 显示弹窗
+			layer.confirm('Do you want to offset the carbon emissions for your travel?', {
+				btn: ['Yes, offset', 'No'] // 可以定义按钮文本
+			}, function(){
+				// 用户点击 "Yes, offset" 执行的代码
+				window.location.href = 'offset.html'; // 重定向到 offset.html
+			}, function(){
+				// 用户点击 "No" 执行的代码
+				layer.msg('Thank you for your booking!', {icon: 1, time: 3000}); // 显示感谢订票的消息
+			});
+		},
 	});
 
 	layui.use(['layer', 'element', 'carousel', 'laypage', 'http', 'jquery'], function() {
@@ -804,6 +827,7 @@ width: 100%;
 		jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_tx ul",delayTime:0, autoPlay:true});
 		jQuery(".product_list").slide({mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:5,trigger:"click",interTime:4000});
 	};
+
 </script>
 
 
