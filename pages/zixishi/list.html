@@ -303,6 +303,10 @@ width: 100%;
 		height: 100%;
 		object-fit: cover;
 	}
+	.layui-layer-content {
+		/*max-width: 350px; !* Adjust the width as needed *!*/
+		word-wrap: break-word;
+	}
 
 </style><body>
 <div id="app">
@@ -562,11 +566,11 @@ width: 100%;
 // Then reference that class in your JavaScript
 						layer.msg(message, {
 							icon: 1,
-							time: 7000,
+							time: 5000,
 							skin: 'my-skin-class' // Reference your custom class here
 						}, () => {
 							// After the message, show a confirm dialog
-							layer.confirm('Do you want to offset the carbon emissions for travel?', {
+							layer.confirm('Do you want to offset the carbon emissions for the travel?', {
 								btn: ['Yes', 'No'] // Buttons
 							}, function(){
 								// If user clicks 'Yes'
@@ -575,6 +579,7 @@ width: 100%;
 								// If user clicks 'No'
 								layer.msg('Thank you for your booking!', {icon: 1, time: 3000});
 							});
+
 						});
 						this.resetBookingForm();
 
@@ -716,7 +721,7 @@ width: 100%;
 		},
 		showCarbonOffsetDialog() {
 			// 使用 layui 的 layer.confirm 显示弹窗
-			layer.confirm('Do you want to offset the carbon emissions for travel?', {
+			layer.confirm('Do you want to offset the carbon emissions for&nbsp;your&nbsp;travel?', {
 				btn: ['Yes, offset', 'No'] // 可以定义按钮文本
 			}, function(){
 				// 用户点击 "Yes, offset" 执行的代码
