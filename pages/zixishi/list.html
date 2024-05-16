@@ -571,6 +571,7 @@ width: 100%;
 						}, () => {
 							// After the message, show a confirm dialog
 							layer.confirm('Do you want to offset the carbon emissions for the travel?', {
+								title: 'Information', // Set the title to 'Information'
 								btn: ['Yes', 'No'] // Buttons
 							}, function(){
 								// If user clicks 'Yes'
@@ -579,6 +580,7 @@ width: 100%;
 								// If user clicks 'No'
 								layer.msg('Thank you for your booking!', {icon: 1, time: 3000});
 							});
+
 
 						});
 						this.resetBookingForm();

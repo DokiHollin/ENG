@@ -204,7 +204,7 @@
         var slider = document.getElementById('treeSlider');
         var value = slider.value;
         document.getElementById('sliderValue').innerText = 'Number of trees: ' + value;
-        document.getElementById('cost').innerText = value * 5 + ' USD'; // Assuming each tree costs 5 USD
+        document.getElementById('cost').innerText = value * 5 + ''; // Assuming each tree costs 5 USD
 
         // Update tree images based on slider value
         var treeImages = document.getElementsByClassName('tree-image');
@@ -272,7 +272,7 @@
 
                 <input type="range" min="1" max="100" value="1" class="form-range" id="treeSlider" onchange="updateSliderValue()">
                 <p id="sliderValue">Number of trees: 1</p>
-                <p>Cost: <span id="cost">5</span> USD</p>
+                <p>Cost: <span id="cost">5</span> AUD</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="hideModal()">Cancel</button>
